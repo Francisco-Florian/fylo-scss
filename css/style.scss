@@ -1,0 +1,326 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Raleway:wght@100;200;300;400;500;600;700&display=swap");
+
+// générale
+
+* {
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+$veryDarkBlue: hsl(243, 87%, 12%);
+$desaturatedBlue: hsl(238, 22%, 44%);
+$brightBlue: hsl(224, 93%, 58%);
+$moderateCyan: hsl(170, 45%, 43%);
+$lightGrayishBlue: hsl(240, 75%, 98%);
+$lightGray: hsl(0, 0%, 75%);
+$white: hsl(0, 0%, 100%);
+$shadow: #e1e1e1;
+$openSans: "Open Sans", sans-serif;
+$raleway: "Raleway", sans-serif;
+
+h1,
+h2 {
+    font-family: $openSans;
+    font-size: 40px;
+    line-height: 1.5;
+    font-weight: 700;
+}
+
+%fontSizeAndLineHeight {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    font-family: $openSans;
+    @extend %fontSizeAndLineHeight;
+    transition: all 0.2 ease-in-out;
+}
+
+p {
+    font-family: $raleway;
+    @extend %fontSizeAndLineHeight;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+@mixin container($maxWidth, $margin, $padding) {
+    max-width: $maxWidth;
+    margin: $margin;
+    padding: $padding;
+}
+
+.container_1440 {
+    @include container(1440px, auto, 0 15px);
+}
+
+@mixin grid($columns, $gap) {
+    display: grid;
+    grid-template-columns: $columns;
+    gap: $gap;
+}
+
+%btn {
+    border-radius: 4px;
+    font-size: 16px;
+    color: $white;
+    background-color: $brightBlue;
+    padding: 12px 16px;
+    border: none;
+    cursor: pointer;
+}
+
+// Header
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    >.burgerMenu {
+        display: none;
+    }
+    > a > img {
+        margin-top: 10px;
+    }
+    > nav > ul {
+        display: flex;
+        gap: 40px;
+        > li > a {
+            color: $veryDarkBlue;
+            &:hover {
+                color: $moderateCyan;
+            }
+        }
+    }
+}
+
+// footer
+
+footer {
+    background-color: $veryDarkBlue;
+    color: $white;
+    > div {
+        @include grid(1fr 2fr 1fr, 50px);
+        padding: 100px 15px !important;
+        > div ul li a {
+            color: $white;
+            &:hover {
+                color: $moderateCyan;
+            }
+        }
+        > :nth-child(2) {
+            @include grid(repeat(2, 1fr), 40px);
+        }
+        > :nth-child(3) {
+            ul {
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                li {
+                    border: 1px solid $white;
+                    border-radius: 50%;
+                    padding: 5px 10px;
+                    &:hover {
+                        cursor: pointer;
+                        a {
+                            color: $moderateCyan;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// section 1
+
+#section1 {
+    @include grid(repeat(2, 1fr), 80px);
+    margin: 50px auto;
+    align-items: center;
+    > article {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        > form {
+            > input {
+                border: 1px solid $veryDarkBlue;
+                border-radius: 4px;
+                padding: 12px 8px;
+            }
+            > button {
+                @extend %btn;
+            }
+        }
+    }
+    > img {
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+// section 2
+
+#section2 {
+    margin-top: 280px;
+    position: relative;
+    background-color: $lightGrayishBlue;
+    > :before {
+        content: " ";
+        background-image: url(../img/bg-curve-desktop.svg);
+        position: absolute;
+        top: -113px;
+        left: 0;
+        width: 100%;
+        object-fit: cover;
+        background-size: cover;
+        height: 128px;
+    }
+    > div {
+        @include grid(repeat(2, 1fr), 80px);
+        padding: 100px 15px;
+        align-items: center;
+        > article {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            > a {
+                border-bottom: 1px solid;
+                color: $moderateCyan;
+                width: fit-content;
+                &:hover {
+                    opacity: 0.7;
+                    transition: all 0.2s ease-in-out;
+                }
+            }
+            > div {
+                width: 70%;
+                background-color: $white;
+                padding: 30px;
+                box-shadow: 0px 1px 14px $shadow;
+                border-radius: 6px;
+                margin-top: 35px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                > img {
+                    width: 13px;
+                    object-fit: cover;
+                }
+                > div {
+                    display: flex;
+                    gap: 20px;
+                    align-items: center;
+                    padding-bottom: 40px;
+                    > img {
+                        width: 16%;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+        > img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+// section 3
+
+#section3 {
+    background-color: $desaturatedBlue;
+    > div {
+        color: $white;
+        @include grid(repeat(2, 1fr), 80px);
+        padding: 100px 15px;
+        align-items: center;
+        > article {
+            width: 75%;
+        }
+        > form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            > input {
+                border: 1px solid $white;
+                border-radius: 4px;
+                padding: 12px 8px;
+            }
+            > button {
+                @extend %btn;
+                width: fit-content;
+            }
+        }
+    }
+}
+
+// responsive
+
+@media screen and (max-width: 767px){
+
+    // générale
+
+    h1,
+    h2 {
+        font-size: 25px;
+    }
+
+    // header
+
+    header{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    // section 1
+
+    #section1 {
+        @include grid(1fr, 80px);
+        >article{
+            >form{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    }
+
+    // section 2
+
+    #section2 {
+        >div{
+            @include grid(1fr, 80px);
+        }
+    }
+
+    // section 3
+
+    #section3 {
+        >div{
+            @include grid(1fr, 80px);
+        }
+    }
+
+    // footer
+
+    footer{
+        >div{
+            @include grid(1fr, 50px);
+            >:nth-child(2){
+                @include grid(1fr, 40px);
+            }
+            >:nth-child(3){
+                >ul{
+                    justify-content: flex-start
+                }
+            }
+        }
+    }
+
+}
